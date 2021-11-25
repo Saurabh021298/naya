@@ -1,0 +1,11 @@
+PushTopic pushTopic = new PushTopic();
+pushTopic.Name = 'TCRMContact';
+pushTopic.Query = 'SELECT id,firstname,lastname,accountid,email,Phone FROM contact';
+pushTopic.ApiVersion = 52.0;
+pushTopic.NotifyForOperationCreate = true;
+pushTopic.NotifyForOperationUpdate = true;
+pushTopic.NotifyForOperationUndelete = true;
+pushTopic.NotifyForOperationDelete = true;
+pushTopic.NotifyForFields = 'Referenced';
+insert pushTopic;
+

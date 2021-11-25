@@ -1,0 +1,6 @@
+pyodbc
+requests
+pytz
+kafka-python
+mysql-connector
+aiosfstream
