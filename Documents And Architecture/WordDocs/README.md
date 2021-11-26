@@ -1,11 +1,14 @@
 ﻿
 
+Sales-force Streaming Events and Kafka Integration
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.001.png)
+
 
 # **Document History**
 
 |**Date**|**Version**|**Created By**|**Reviewed By**|
 | :- | :- | :- | :- |
-|2021-11-24|V-0.1|Saurabh Dadhich|Kamlesh Kumar Pant|
+|2021-08-16|V5|Nikhil|Kamlesh Kumar Pant|
 |||||
 |||||
 |||||
@@ -69,7 +72,9 @@ To Achieve this, application capitalizing salesforce event bus mechanism to capt
 # **Solution Architecture**
 
 
+![Diagram
 
+Description automatically generated](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.002.png)
 
 # **Solution Design/Approach**
 
@@ -90,7 +95,7 @@ Following steps to be executed across platforms
 
 \-   Click on **“New connected App”**
 
-
+![Create new connected app](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.003.png)
 
 
 
@@ -101,6 +106,8 @@ Following steps to be executed across platforms
 
 - **Contact Email.** your email.
 
+![New connected app form](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.004.png)
+
 - Go to **API (Enable OAuth Settings)** and select Enable OAuth Settings.
 
 - In the **Call back URL** field, enter **https://login.salesforce.com/services/oauth2/token** for a production Org and **https://test.salesforce.com/services/oauth2/token** for a Sandbox Org.
@@ -110,6 +117,7 @@ Following steps to be executed across platforms
 
 - Click the **Save** button to save the new Connected App.
 
+![Selected OAuth Scopes](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.005.png)
 
 
 
@@ -119,6 +127,7 @@ Following steps to be executed across platforms
 - On the new app that you just created, click **Manage**
 
 
+![Manage connected app](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.006.png)
 
 \-     On the page that opens, click the Edit Policies button.
 
@@ -126,13 +135,13 @@ Following steps to be executed across platforms
 
 \-    Set **Permitted Users** to: All users may self-authorize
 
-
+![Manage Salesforce connected app](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.007.png)
 ##
 - ## Acquire Consumer Key and Secret Key:
 
 - Go to the **API (Enable OAuth Settings)** section, and note down the **Consumer Key** and **Consumer Secret**.
 
-
+![Consumer and secret key](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.008.png)
 
 - Get Your Consumer Key and Client Secrete and Save it in Notepad.
 ##
@@ -141,11 +150,14 @@ Following steps to be executed across platforms
 
 https://**<YOUR\_INSTANCE>**.salesforce.com/services/oauth2/authorize?response\_type=code&client\_id=**<CONSUMER\_KEY>**&redirect\_uri=https://login.salesforce.com/
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.009.png)
+
 - Enter request Url in the browser
 - Allow access if any alert popup. Then you will see browser is redirecting to a Url like this. You can obtain the code using that Url.
 
 [https://login.salesforce.com/?code=**aPrxYXyxzkuBzbDGdwv67qekAQredtrsWqty38LsdhfREyTRbvdjvTqdbvxPVC__4Cb9xGKDGErtOw%3D%3D**](https://login.salesforce.com/?code=aPrxYXyxzkuBzbj78FV67qekAQpAHyzh9Ry38LsyinKxPVC__Wzov6j6OBFx74Cb9xGKI60AOw%3D%3D)
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.010.png)
 
 \-  The browser will redirect to a Url with the code
 
@@ -170,7 +182,7 @@ curl -X POST [https://**<YOUR_INSTANCE>**.salesforce.com/services/oauth2/token?c
 
 - If you are not familiar with curl you can use Postman to send the request.
 
-
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.011.png)
 
 
 
@@ -182,16 +194,22 @@ curl -X POST [https://**<YOUR_INSTANCE>**.salesforce.com/services/oauth2/token?c
 - So, select the object which changed data event you want.
 - In Our case We are selecting Users.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.012.png)
 - ## Enable Salesforce for PushTopic:
 
 - The pushTopic record contains a SOQL query. Event notifications are generated for updates that match the query. Alternatively, you can also use Workbench to create a PushTopic. In this sample we using Salesforce Developer Console to create a Push Topic.
 
 - **Login** to the **Salesforce Account**. Navigate to the top right corner of the **Home page** and click the **Setup** icon. Then select **Developer Console**.
 
+![Open the Developer Console.](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.013.png)
+
 - After populating the Developer console, click **Debug** -> Open **Execute Anonymous Window**.
+
+![Open the Anonymous Window.](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.014.png)
 
 - Add the following entry in the **Enter Apex Code** window and click **Execute**.
 
+![Enter Apex code.](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.015.png)
 
 PushTopic pushTopic = **new** PushTopic();
 
@@ -239,6 +257,8 @@ Step 1. Install Python and Required Libraries:
 - Consider this process in Windows
 - Firstly, install python 3.7 and install all required libraries which mentioned in the starting of this document.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.016.png)
+
 Step 2. Install git hub and git bash in your system.
 
 - Install git 2.33.1 in your system
@@ -250,6 +270,7 @@ Step 3. Install Kafka
 - Move that tar file into C drive and Unzip into it.
 - Since it’s based on JVM languages like Scala and Java, you must make sure that you are using Java 7 or greater.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.017.png)
 
 After installing kafka Follow these steps to start kafka server:
 - ## Start Gitbash
@@ -258,7 +279,9 @@ After installing kafka Follow these steps to start kafka server:
 - Minimise First git bash and again follow the first step to open one more git bash.
 - Note: check previous git bash and cmd prompt aren’t open at the same time.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.016.png)
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.018.png)![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.019.png)
 
 The easiest way to install Kafka is to download binaries and run it. Since it’s based on JVM languages like Scala and Java, you must make sure that you are using Java 7 or greater.
 
@@ -301,12 +324,15 @@ Step 4. Clone or Download the Python Code.
 - Clone or download the python codes from git hub repo
 - Unzip that file on desktop
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.016.png)
 - ## Application Configuration Details:
 
 Clone or Download the Python Code.
 
 - Clone or download the python codes from git hub repo
 - Unzip that file on desktop
+
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.016.png)
 
 - Set Up Your Configuration in Configuration File:
 - Go to the file where all python codes are there.
@@ -316,7 +342,7 @@ Clone or Download the Python Code.
 
 **Configuration file (json code):**
 
-|<p>{</p><p>"DATABASE": {</p><p>"MSSQL": [</p><p>{</p><p>"SERVER": "mssqlldb",</p><p>"NAME": "**database\_name**",</p><p>"SCHEMA": "DBO",</p><p>"TABLE\_PREFIX": "**table\_prefix”**</p><p>"DRIVER": "{SQL Server}",</p><p>"AUTH\_TYPE": "WINLOGIN",</p><p>"USERNAME": "**your\_username**",</p><p>"PASSWORD": "**your\_pwd**"</p><p>}</p><p>],</p><p>"MYSQL": [</p><p>{</p><p>"SERVER": "127.0.0.1”,              - **Localhost sever**</p><p>"NAME": "XYZ”,                          - **Database Name**</p><p>"SCHEMA": "“,                            -  **Schema Name**</p><p>"TABLE\_PREFIX": "XYZ”,            -  **Table Prefix**</p><p>"DRIVER": "",                                - **Driver name**</p><p>"AUTH\_TYPE": "WINLOGIN",     - **Authentication Type**</p><p>"USERNAME": "XXXX",                - **your Username**</p><p>"PASSWORD": "XXXX"                 - **your password**</p><p>}</p><p>],</p><p>"SNOWFLAKE": [</p><p>{</p><p>"WAREHOUSE": "PC\_ALTERYX\_WH",</p><p>"DSN": "SnowFlake32",</p><p>"CONNECTION\_URI": "pua75685.snowflakecomputing.com",</p><p>"NAME": "**database\_name**",</p><p>"SCHEMA": "**schema\_name**",</p><p>"TABLE\_NAME": "**table\_name**",</p><p>"STAGE\_NAME": "**Your\_stage\_name**",</p><p>"FILE\_FORMAT\_NAME": "**Filene name**",</p><p>"FILE\_FORMAT\_TYPE": "CSV",</p><p>"FILE\_FIELD\_DELIMITER": ",",</p><p>"SNOWSQL\_CMD": "C:\\\"Program Files\"\\\"Snowflake SnowSQL\"\\snowsql",</p><p>"TABLE\_PREFIX": "Snowflake\_Table\_",</p><p>"DRIVER": "SnowflakeDSIIDriver",</p><p>"USERNAME": "**Your\_Username**",</p><p>"PASSWORD": "**your\_pwd**"</p><p>},</p><p>{</p><p>"WAREHOUSE": "COMPUTE\_WH",</p><p>"DSN": "SnowFlake32",</p><p>"CONNECTION\_URI": "mpa43641.snowflakecomputing.com",</p><p>"NAME": "SNOWDBKK",</p><p>"SCHEMA": "SNOWSCHEMAKK",</p><p>"TABLE\_NAME": "SNOWTABLEKK",</p><p>"STAGE\_NAME": "PY\_MYSQL\_STAGE",</p><p>"FILE\_FORMAT\_NAME": "PYCSV\_FORMAT",</p><p>"FILE\_FORMAT\_TYPE": "CSV",</p><p>"FILE\_FIELD\_DELIMITER": ",",</p><p>"SNOWSQL\_CMD": "C:\\\"Program Files\"\\\"Snowflake SnowSQL\"\\snowsql",</p><p>"TABLE\_PREFIX": "SnowTableKK\_",</p><p>"DRIVER": "SnowflakeDSIIDriver",</p><p>"USERNAME": "**your\_username**",</p><p>"PASSWORD": "**your\_pwd**"</p><p>}</p><p>]</p><p>},</p><p>"CLOUD\_PLATFORM": "AWS",</p><p>"AWS": {</p><p>"AWS\_REGION": "us-west-2",</p><p>"SNS\_NAME\_OR\_ARN": "",</p><p>"SQS\_NAME\_OR\_ARN": "",</p><p>"S3\_BUCKET\_NAME": "",</p><p>"S3\_OBJECT\_NAME": "",</p><p>"AWS\_SNS\_ARN": ""</p><p>},</p><p>"WAREHOUSE\_PLATFORM": "SNOWFLAKE",</p><p>"STREAMING\_SERVICE": "KAFKA",</p><p>"KAFKA": [</p><p>{</p><p>"TOPIC": " **Topic Name** ",</p><p>"SOURCE\_SYSTEM": "SALESFORCE",                - **Source**</p><p>"TARGET\_SYSTEM": "HDFS",                              - **Target**</p><p>"BOOTSTRAP\_SERVERS": "['localhost:9092']"</p><p>}</p><p>],</p><p>"SFTP": [</p><p>{</p><p>"SERVER": "192.168.1.116",</p><p>"PUT\_PATH": "D:\\SnowFlake-UR\\SNOWFLAKE\\Processed\\",</p><p>"GET\_PATH": "D:\\SnowFlake-UR\\SNOWFLAKE\\",</p><p>"USERNAME": "ftpuser",</p><p>"PASSWORD": "password",</p><p>"FILE\_PATTERN": ".\*\\.csv"</p><p>}</p><p>],</p><p>"FTP": [</p><p>{</p><p>"SERVER": "192.168.1.16",</p><p>"PUT\_PATH": "/Processed/",</p><p>"GET\_PATH": "/",</p><p>"USERNAME": "ftpuser",</p><p>"PASSWORD": "password",</p><p>"FILE\_PATTERN": "^[aA0-zZ1]\*\\.csv"</p><p>}</p><p>],</p><p>"PROCESS\_LOG": {</p><p>"LOG\_FILE\_RETENTION\_PERIOD": 10,</p><p>"LOG\_FILE\_MAX\_FILE\_SIZE": 50000000,</p><p>"PRINT\_LOG\_MESSGAE\_ON\_CONSOLE": "YES",</p><p>"ENABLE\_FILE\_LOGGING": "YES",</p><p>"LOG\_LEVEL": "WARNING",</p><p>"LOG\_FILE\_NAME": "LogForSalesForce\_"</p><p>},</p><p>"SYSTEM\_PARAMETERS": {</p><p>"LOCAL\_FILE\_PATH": "C:\\SalesForce-UR\\",</p><p>"CLEANUP\_HISTORICAL\_FILES": "NO",</p><p>"TIMEZONE": "Etc/UTC",</p><p>"CREDENTIAL": "SECRET\_MANAGER\_NO",</p><p>"ENTITY\_NAME": "SNOWFLAKE"</p><p>},</p><p>"SEARCH\_STRING\_FOR\_INDEX": {</p><p>"SNOWFLAKE1": "mpa43641",</p><p>"MSSQL1": "mssqlldb",</p><p>"MYSQL1": "mysql",</p><p>"KAFKA\_TOPIC\_SNOWDB": "salesforceTCRM",</p><p>"FTP\_LOCAL": "192.168.1.16"</p><p>},</p><p>"WEBAPI": {</p><p>"EnableDataSerachWithLIKE": "yes",</p><p>"WebPort": "800",</p><p>"EnableDataSearchAcrossAttributes": "yes",</p><p>"WebContentDisplayType": "TABLE",</p><p>"EnableUserToControlSearch": "Yes",</p><p>"EnableUserFullAccessToSearch": "yes"</p><p>},</p><p>"SALESFORCE": {</p><p>"AUTHENTICATION": {</p><p>"AuthURL": "https://login.salesforce.com/services/oauth2/token",</p><p>"UserName": " **Salesforce Username** ",</p><p>"Password": " **Salesforce Password** ",</p><p>"GrantType": "password",                                         - **Keep it as same**</p><p>"ClientID": " **Your Client Id**",</p><p>"ClientSecret": " **Your Client Secrete** "</p><p>},</p><p>"GetUserRole": {<br>"EndPointURL": "[https://<**Your_Instance_Url**>.salesforce.com/services/data/v52.0/sobjects/UserRole/"](),<br>"QueryOrHeaderParameters": ""<br>},<br>"SOBJECTS\_DETAILED\_DATA": {<br>"EndPointURL": "[https:// <**Your_Instance_Url**>.salesforce.com/services/data/v52.0/sobjects/"](https://usereaddy-fsc-dev-ed.my.salesforce.com/services/data/v52.0/sobjects/%22 "https://usereaddy-fsc-dev-ed.my.salesforce.com/services/data/v52.0/sobjects/%22"),<br>"SOBJECTS": [<br>"Profile",<br>"UserRole",<br>"Contact1",<br>"User"<br>]<br>}<br>},</p><p>"POSTAPI": {</p><p>"PostAccountDetail": {</p><p>"EndPointURL": "",</p><p>"HeaderParameters": "",</p><p>"BodyParameters": ""</p><p>}</p><p>},</p><p>"STREAMAPI": {</p><p>"SALESFORCE\_PUSHTOPICS": [</p><p>"pushtopic\_name1”,                      - **Your PushTopic Name**</p><p>"Pushtopic\_name2"                        - **Your PushTopic Name**</p><p>]</p><p>}</p><p>}</p><p>}</p>|
+|<p>{</p><p>"DATABASE": {</p><p>"MSSQL": [</p><p>{</p><p>"SERVER": "mssqlldb",</p><p>"NAME": "**database\_name**",</p><p>"SCHEMA": "DBO",</p><p>"TABLE\_PREFIX": "**table\_prefix”**</p><p>"DRIVER": "{SQL Server}",</p><p>"AUTH\_TYPE": "WINLOGIN",</p><p>"USERNAME": "**your\_username**",</p><p>"PASSWORD": "**your\_pwd**"</p><p>}</p><p>],</p><p>"MYSQL": [</p><p>{</p><p>"SERVER": "127.0.0.1”,              - **Localhost sever**</p><p>"NAME": "XYZ”,                          - **Database Name**</p><p>"SCHEMA": "“,                            -  **Schema Name**</p><p>"TABLE\_PREFIX": "XYZ”,            -  **Table Prefix**</p><p>"DRIVER": "",                                - **Driver name**</p><p>"AUTH\_TYPE": "WINLOGIN",     - **Authentication Type**</p><p>"USERNAME": "XXXX",                - **your Username**</p><p>"PASSWORD": "XXXX"                 - **your password**</p><p>}</p><p>],</p><p>"SNOWFLAKE": [</p><p>{</p><p>"WAREHOUSE": "PC\_ALTERYX\_WH",</p><p>"DSN": "SnowFlake32",</p><p>"CONNECTION\_URI": "pua75685.snowflakecomputing.com",</p><p>"NAME": "**database\_name**",</p><p>"SCHEMA": "**schema\_name**",</p><p>"TABLE\_NAME": "**table\_name**",</p><p>"STAGE\_NAME": "**Your\_stage\_name**",</p><p>"FILE\_FORMAT\_NAME": "**Filene name**",</p><p>"FILE\_FORMAT\_TYPE": "CSV",</p><p>"FILE\_FIELD\_DELIMITER": ",",</p><p>"SNOWSQL\_CMD": "C:\\\"Program Files\"\\\"Snowflake SnowSQL\"\\snowsql",</p><p>"TABLE\_PREFIX": "Snowflake\_Table\_",</p><p>"DRIVER": "SnowflakeDSIIDriver",</p><p>"USERNAME": "**Your\_Username**",</p><p>"PASSWORD": "**your\_pwd**"</p><p>},</p><p>{</p><p>"WAREHOUSE": "COMPUTE\_WH",</p><p>"DSN": "SnowFlake32",</p><p>"CONNECTION\_URI": "mpa43641.snowflakecomputing.com",</p><p>"NAME": "SNOWDBKK",</p><p>"SCHEMA": "SNOWSCHEMAKK",</p><p>"TABLE\_NAME": "SNOWTABLEKK",</p><p>"STAGE\_NAME": "PY\_MYSQL\_STAGE",</p><p>"FILE\_FORMAT\_NAME": "PYCSV\_FORMAT",</p><p>"FILE\_FORMAT\_TYPE": "CSV",</p><p>"FILE\_FIELD\_DELIMITER": ",",</p><p>"SNOWSQL\_CMD": "C:\\\"Program Files\"\\\"Snowflake SnowSQL\"\\snowsql",</p><p>"TABLE\_PREFIX": "SnowTableKK\_",</p><p>"DRIVER": "SnowflakeDSIIDriver",</p><p>"USERNAME": "**your\_username**",</p><p>"PASSWORD": "**your\_pwd**"</p><p>}</p><p>]</p><p>},</p><p>"CLOUD\_PLATFORM": "AWS",</p><p>"AWS": {</p><p>"AWS\_REGION": "us-west-2",</p><p>"SNS\_NAME\_OR\_ARN": "",</p><p>"SQS\_NAME\_OR\_ARN": "",</p><p>"S3\_BUCKET\_NAME": "",</p><p>"S3\_OBJECT\_NAME": "",</p><p>"AWS\_SNS\_ARN": ""</p><p>},</p><p>"WAREHOUSE\_PLATFORM": "SNOWFLAKE",</p><p>"STREAMING\_SERVICE": "KAFKA",</p><p>"KAFKA": [</p><p>{</p><p>"TOPIC": " **Topic Name** ",</p><p>"SOURCE\_SYSTEM": "SALESFORCE",                - **Source**</p><p>"TARGET\_SYSTEM": "HDFS",                              - **Target**</p><p>"BOOTSTRAP\_SERVERS": "['localhost:9092']"</p><p>}</p><p>],</p><p>"SFTP": [</p><p>{</p><p>"SERVER": "192.168.1.116",</p><p>"PUT\_PATH": "D:\\SnowFlake-UR\\SNOWFLAKE\\Processed\\",</p><p>"GET\_PATH": "D:\\SnowFlake-UR\\SNOWFLAKE\\",</p><p>"USERNAME": "ftpuser",</p><p>"PASSWORD": "password",</p><p>"FILE\_PATTERN": ".\*\\.csv"</p><p>}</p><p>],</p><p>"FTP": [</p><p>{</p><p>"SERVER": "192.168.1.16",</p><p>"PUT\_PATH": "/Processed/",</p><p>"GET\_PATH": "/",</p><p>"USERNAME": "ftpuser",</p><p>"PASSWORD": "password",</p><p>"FILE\_PATTERN": "^[aA0-zZ1]\*\\.csv"</p><p>}</p><p>],</p><p>"PROCESS\_LOG": {</p><p>"LOG\_FILE\_RETENTION\_PERIOD": 10,</p><p>"LOG\_FILE\_MAX\_FILE\_SIZE": 50000000,</p><p>"PRINT\_LOG\_MESSGAE\_ON\_CONSOLE": "YES",</p><p>"ENABLE\_FILE\_LOGGING": "YES",</p><p>"LOG\_LEVEL": "WARNING",</p><p>"LOG\_FILE\_NAME": "LogForSalesForce\_"</p><p>},</p><p>"SYSTEM\_PARAMETERS": {</p><p>"LOCAL\_FILE\_PATH": "C:\\SalesForce-UR\\",</p><p>"CLEANUP\_HISTORICAL\_FILES": "NO",</p><p>"TIMEZONE": "Etc/UTC",</p><p>"CREDENTIAL": "SECRET\_MANAGER\_NO",</p><p>"ENTITY\_NAME": "SNOWFLAKE"</p><p>},</p><p>"SEARCH\_STRING\_FOR\_INDEX": {</p><p>"SNOWFLAKE1": "mpa43641",</p><p>"MSSQL1": "mssqlldb",</p><p>"MYSQL1": "mysql",</p><p>"KAFKA\_TOPIC\_SNOWDB": "salesforceTCRM",</p><p>"FTP\_LOCAL": "192.168.1.16"</p><p>},</p><p>"WEBAPI": {</p><p>"EnableDataSerachWithLIKE": "yes",</p><p>"WebPort": "800",</p><p>"EnableDataSearchAcrossAttributes": "yes",</p><p>"WebContentDisplayType": "TABLE",</p><p>"EnableUserToControlSearch": "Yes",</p><p>"EnableUserFullAccessToSearch": "yes"</p><p>},</p><p>"SALESFORCE": {</p><p>"AUTHENTICATION": {</p><p>"AuthURL": "https://login.salesforce.com/services/oauth2/token",</p><p>"UserName": " **Salesforce Username** ",</p><p>"Password": " **Salesforce Password** ",</p><p>"GrantType": "password",                                         - **Keep it as same**</p><p>"ClientID": " **Your Client Id**",</p><p>"ClientSecret": " **Your Client Secrete** "</p><p>},</p><p>"GETAPI": {</p><p>"GetAccountDetail": {</p><p>"EndPointURL": "https:// <**Your\_Instance\_Url**>.salesforce.com/services/data/v52.0/query/?q=",</p><p>"QueryOrHeaderParameters": "SELECT+Name,Type+FROM+Account"</p><p>},</p><p>"GetUserDetail": {</p><p>"EndPointURL": "https:// <**Your\_Instance\_Url**>.salesforce.com/services/data/v52.0/query/?q=",</p><p>"QueryOrHeaderParameters": "SELECT+Name,Email,UserRoleId,ProfileId,Phone+FROM+User "</p><p>},</p><p>"GetUserProfile": {</p><p>"EndPointURL": "https://<**Your\_Instance\_Url**>.salesforce.com/services/data/v52.0/query/?q=",</p><p>"QueryOrHeaderParameters": "SELECT+Name,Email+FROM+Profile"</p><p>}</p><p>},</p><p>"POSTAPI": {</p><p>"PostAccountDetail": {</p><p>"EndPointURL": "",</p><p>"HeaderParameters": "",</p><p>"BodyParameters": ""</p><p>}</p><p>},</p><p>"STREAMAPI": {</p><p>"SALESFORCE\_PUSHTOPICS": [</p><p>"pushtopic\_name1”,                      - **Your PushTopic Name**</p><p>"Pushtopic\_name2"                        - **Your PushTopic Name**</p><p>]</p><p>}</p><p>}</p><p>}</p>|
 | :- |
 
 **SalesForce auth configuration details:**
@@ -324,9 +350,6 @@ Clone or Download the Python Code.
 - Go in configuration file change all the configuration for salesforce Auth.
 - Auth url is same as mentioned but write your salesforce instance and write correct Version.
 - Paste your username, password, ClientID and client secrete. Get client id and client secrete from Your salesforce connected app which we have done in First Step.
-- Below the salesforce configuration there is a get request pulling the salesforce data.
-- By this you can get all the data of mentioned salesforce Objects.
-- You just need to type objects name in the "SOBJECTS" key to pull the data.
 
 **database configuration details:**
 
@@ -354,7 +377,7 @@ Clone or Download the Python Code.
 |SalesForceStream|py|This code would subscribe the pushTopic by using ‘aiosfstream’ liberary. At the same it will produce the changed data event information in kafka producer and it will store the data in MySql.|
 |KafkaConsumerStream|py|This code is for kafka consumer. It would consume all the changed data.|
 |SalesForce|py|This file integrates salesforce and python to get all the data from salesforce org.|
-|Utilities|py|This is a utility tool file for Database connectivity, Log setup and application configuration setup.|
+|Utilities|py|This file is for general formatting and functional part of configuration file.|
 ||||
 
 # **Application Deployment and Testing:**
@@ -379,22 +402,35 @@ Step 7. Implementation:
 - Then Open two command prompts and go into the python codes file using this command: **“cd C:\Users\Username\Desktop\\*python\_codes\_filename\*”**   then enter it.
 - Use this command in both cmd prompts.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.020.png)
+
 - Now kafka server is running. So, let’s run python codes in cmd.
+
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.021.png)
 
 - In one cmd prompt, type “python SalesForceStreamCDC.py” to run the python file.
 - In second cmd prompt, type “python SalesForceConsumerCDC.py”.
 - In first code, we are pulling the changed data information from Salesforce and producing it from kafka. At the same time, we are dumping this data into MySql. how we will get the information we will look ahead.
 - In second code we are consuming the information in the kafka.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.021.png)
+
 - Now Go to salesforce Org and Change some data or add new User in the Users section. (Refer Third Step’s step 5)
 - Let’s add New User.
+
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.022.png)
 
 - Type Users in Quick find box.
 - Click on Users and then Click on New User
 - Fill all the details and save it.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.021.png)
+
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.021.png)
 
 - After adding a new user check your cmd prompt for the changed data information.
+
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.021.png)
 
 - so, we have got the data here.
 - You can get all the information related to create, delete and update data of the salesforce Object.
@@ -405,6 +441,7 @@ Step 7. Implementation:
 - Just go to the cmd prompt and type “python Salesforce.py”.
 - You will get all the data from the object you have queried in configuration file.
 
+![](references/Aspose.Words.be9bfa77-d374-4285-a501-ac90684d75a5.021.png)
 
 
 
